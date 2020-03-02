@@ -1,39 +1,48 @@
-// NUMBER AND STRING
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-    const result = n1 + n2;
-    if (showResult) {
-        console.log(phrase + result);
+// UNION ---------------------------------------
+function combine(input1: number | string, input2: number | string) {
+    let result;
+    if (typeof input1 === 'number' && typeof input2 === 'number') {
+        result = input1 + input2
     } else {
-        return result;
+        result = input1.toString() + input2.toString();
     }
+    return result;
+};
+
+const combinedAges = combine(30, 26);
+console.log(combinedAges);
+
+const combinedNames = combine('Toni', 'Paloma');
+console.log(combinedNames);
+
+// ALIAS (CREATE A DETERMINATE TYPE) ----------------------------------
+type Combinable = number | string;
+type ConversionDescriptor = 'as-number' | 'as-text';
+
+const person4: {
+    name: Combinable;
+    age: Combinable;
+    resultConversion: ConversionDescriptor;
+} = {
+    name: 15,
+    age: 26,
+    resultConversion: 'as-text',
+};
+
+// FUNCTIONS  --------------------
+function add(n1: number, n2: number): number {
+    return n1 + n2;
 }
 
-let number1: number;
-number1 = 5;
-const number2 = 10;
-const printResult = true;
-const resultPhrase = "Result is: "
+// VOID IS WHEN NOT RETURN ANYTHING
+function printResult(num: number): void {
+    console.log('Result: ' + num);
+}
 
-const result = add(number1, number2, printResult, resultPhrase);
+// UNDEFINED IS WHEN RETURN ANYTHING (DIFFERENT TO void)
+function printedResult(num: number): undefined {
+    console.log('Result: ' + num);
+    return;
+}
 
-// OBJECT
-const person = {
-    name: 'Toni',
-    age: 27
-};
-
-const person2: {
-    name: string;
-    age: number;
-} = {
-    name: 'Toni',
-    age: 27
-};
-
-console.log(person);
-
-// ARRAY
-const hobbies = ['Sports', 'Cooking', 'Gaming'];
-
-let favouriteSports: string[];  // ONLY PERMITES ARRAY OF STRINGS
-favouriteSports = hobbies;  // IF HOBBIES CONTAINS A NUMBER IS AN ERROR
+printResult(add(5, 12));
