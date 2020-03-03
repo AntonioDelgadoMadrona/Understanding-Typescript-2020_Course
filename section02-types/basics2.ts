@@ -46,3 +46,22 @@ function printedResult(num: number): undefined {
 }
 
 printResult(add(5, 12));
+
+// FUNCTION TYPES ------------------------
+let combinedValue: Function;
+let combinedValue2: () => number;
+let combinedValue3: (a: number, b: number) => number;
+
+combinedValue = add;
+
+console.log(combinedValue(5, 6));
+
+// CALLBACKS -----------------------------
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
+    const result = n1 + n2;
+    cb(result);
+}
+
+addAndHandle(10, 20, (result) => {
+    console.log(result);
+});
